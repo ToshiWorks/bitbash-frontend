@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Intro.css';
+import './intro.css';
 
 const TYPEWRITER_TEXT = `Welcome To e-Logik' 2026`;
 
