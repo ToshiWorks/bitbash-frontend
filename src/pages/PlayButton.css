@@ -1,0 +1,233 @@
+/* ============================================
+   PLAY BUTTON PAGE STYLES
+   Cyber Purple + Neon Green Theme
+   ============================================ */
+
+/* CSS Variables - Official Color Palette */
+:root {
+  --bg-main: #0b0f1a;
+  --bg-card: #12172a;
+  --primary-purple: #7c5cff;
+  --primary-glow: #a88bff;
+  --success-green: #2ecc71;
+  --success-dark: #1e7f4f;
+  --accent-pink: #ff4ecd;
+  --accent-blue: #4dd0ff;
+  --warning-orange: #f39c12;
+}
+
+/* Animated Background with Grid Pattern */
+.play-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg-main);
+  color: white;
+  font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Cyber Grid Background */
+.play-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(124, 92, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124, 92, 255, 0.06) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: gridMove 10s linear infinite;
+  z-index: 0;
+}
+
+@keyframes gridMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
+}
+
+/* Floating Orbs */
+.play-container::after {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(124, 92, 255, 0.15) 0%, transparent 70%);
+  top: -200px;
+  right: -200px;
+  animation: floatOrb 6s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes floatOrb {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-30px, 30px) scale(1.1); }
+}
+
+/* Play Content Wrapper */
+.play-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 2rem;
+}
+
+/* Play Button */
+.play-button {
+  position: relative;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: var(--bg-card);
+  border: 2px solid var(--primary-purple);
+  box-shadow: 
+    0 4px 15px rgba(124, 92, 255, 0.4),
+    0 0 0 0 rgba(124, 92, 255, 0);
+  animation: playPulseBeat 2s ease-in-out infinite;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.play-button a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: var(--primary-purple);
+  position: relative;
+}
+
+.play-button svg {
+  width: 80%;
+  height: 80%;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 0 10px var(--primary-glow));
+}
+
+/* Play Button Hover State */
+.play-button:hover {
+  transform: translateY(-4px) scale(1.02);
+  border-color: var(--accent-pink);
+  box-shadow: 
+    0 8px 30px rgba(124, 92, 255, 0.5),
+    0 0 50px rgba(124, 92, 255, 0.3);
+}
+
+.play-button:hover svg {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 20px var(--accent-pink)) drop-shadow(0 0 40px rgba(255, 78, 205, 0.5));
+}
+
+/* Ripple Effect on Click */
+.play-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.play-button:active::after {
+  width: 300px;
+  height: 300px;
+  opacity: 0;
+}
+
+@keyframes playPulseBeat {
+  0%, 100% { 
+    box-shadow: 
+      0 4px 15px rgba(124, 92, 255, 0.4),
+      0 0 0 0 rgba(124, 92, 255, 0);
+  }
+  50% { 
+    box-shadow: 
+      0 4px 15px rgba(124, 92, 255, 0.4),
+      0 0 0 10px rgba(124, 92, 255, 0);
+  }
+}
+
+/* Particle Effects Container */
+.play-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.play-particle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: var(--primary-purple);
+  border-radius: 50%;
+  animation: particleFloat 10s linear infinite;
+  opacity: 0.8;
+}
+
+.play-particle:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 12s; }
+.play-particle:nth-child(2) { left: 20%; animation-delay: 2s; animation-duration: 14s; }
+.play-particle:nth-child(3) { left: 30%; animation-delay: 4s; animation-duration: 10s; }
+.play-particle:nth-child(4) { left: 40%; animation-delay: 1s; animation-duration: 16s; }
+.play-particle:nth-child(5) { left: 50%; animation-delay: 3s; animation-duration: 11s; }
+.play-particle:nth-child(6) { left: 60%; animation-delay: 5s; animation-duration: 13s; }
+.play-particle:nth-child(7) { left: 70%; animation-delay: 2s; animation-duration: 15s; }
+.play-particle:nth-child(8) { left: 80%; animation-delay: 4s; animation-duration: 12s; }
+.play-particle:nth-child(9) { left: 90%; animation-delay: 1s; animation-duration: 14s; }
+.play-particle:nth-child(10) { left: 15%; animation-delay: 3s; animation-duration: 10s; }
+
+@keyframes particleFloat {
+  0% { 
+    transform: translateY(100vh) rotate(0deg); 
+    opacity: 0;
+  }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { 
+    transform: translateY(-100vh) rotate(720deg); 
+    opacity: 0;
+  }
+}
+
+/* Entrance Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.play-button {
+  animation: fadeInUp 0.8s ease forwards, playPulseBeat 2s ease-in-out infinite 0.8s;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .play-button {
+    width: 160px;
+    height: 160px;
+  }
+}
