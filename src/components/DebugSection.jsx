@@ -86,7 +86,7 @@ const updateScore = (delta) => {
   setLoading(true);
 
   try {
-    const res = await fetch("http://localhost:5000/evaluate", {
+    const res = await fetch("https://bitbash-backend.onrender.com/evaluate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
